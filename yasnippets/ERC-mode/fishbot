@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Slap with fishbot
+# key: fishbot
+# --
+/me slaps $0 around a bit with a large fishbot.
