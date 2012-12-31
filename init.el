@@ -11,26 +11,18 @@
 
 
 ;; Install required packages if they don't exit
-;; From http://batsov.com/articles/2012/02/19/package-management-in-emacs-the-good-the-bad-and-the-ugly/
+;; From https://github.com/bbatsov/prelude/blob/master/core/prelude-packages.el
 (defvar required-packages
-  '(ace-jump-mode ack-and-a-half auto-complete autopair coffee-mode expand-region
-                  icicles jump-char magit markdown-mode multiple-cursors
-                  rainbow-mode rainbow-delimiters slime slime-js stylus-mode undo-tree
-                  wgrep-ack yasnippet zencoding-mode)
+  (list 'ace-jump-mode 'ack-and-a-half 'auto-complete 'autopair 'coffee-mode
+	'expand-region 'icicles 'jump-char 'magit 'markdown-mode 'multiple-cursors
+	'rainbow-mode 'rainbow-delimiters 'slime 'slime-js 'stylus-mode 'undo-tree
+	'wgrep-ack 'yasnippet 'zencoding-mode)
   "A list of packages to ensure are installed at launch.")
 
-(defun required-packages-installed-p ()
-  (loop for p in prelude-packages
-        when (not (package-installed-p p)) do (return nil)
-        finally (return t)))
-
-(unless (required-packages-installed-p)
-  ;; check for new packages (package versions)
-  (package-refresh-contents)
-  ;; install the missing packages
-  (dolist (p required-packages)
-    (when (not (package-installed-p p))
-      (package-install p))))
+(while required-packages
+  (if (not (package-installed-p (car required-packages)))
+      (package-install (car required-packages)))
+  (setq required-packages (cdr required-packages)))
 
 
 ;; SLIME
