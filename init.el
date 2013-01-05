@@ -117,6 +117,9 @@
 ;; close and reopen Emacs.
 (desktop-save-mode 1)
 
+;; Just y or n please.
+(defalias 'yes-or-no-p 'y-or-n-p)
+
 ;; Sensible undoing
 (require 'undo-tree)
 (global-undo-tree-mode)
