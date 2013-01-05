@@ -1,0 +1,10 @@
+auto-save-list/*
+elpa/*
+eshell/*
+url/*
+.emacs.desktop
+.mc-lists.el
+ac-comphist.dat
+completions
+*.elc
+*~
