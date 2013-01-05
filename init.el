@@ -151,6 +151,10 @@
 (global-set-key (kbd "C-c f") 'jump-char-forward)
 (global-set-key (kbd "C-c F") 'jump-char-backward)
 
+;; Auto indent -- this has to be loaded before Yasnippets and Autopair
+(require 'auto-indent-mode)
+(auto-indent-global-mode)
+
 ;; Yasnippets
 (require 'yasnippet)
 (yas-global-mode 1)
@@ -172,27 +176,6 @@
 (key-chord-define-global "fg" 'jump-char-forward)
 (key-chord-define-global "fd" 'jump-char-backward)
 (key-chord-define-global "xc" 'ace-jump-mode)
-
-
-;; Fullscreen
-(defun toggle-full-screen ()
-  (interactive)
-  (shell-command "emacs_fullscreen.exe --topmost"))
-
-(defun toggle-bars ()
-  (interactive)
-  (menu-bar-mode)
-  (tool-bar-mode)
-  (scroll-bar-mode))
-
-(defun distraction-free ()
-  (interactive)
-  (toggle-full-screen)
-  (menu-bar-mode)
-  (scroll-bar-mode))
-  ;(toggle-bars))
-
-(global-set-key [f11] 'distraction-free)
 
 
 ;; Show line numbers when invoking goto-line
