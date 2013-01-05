@@ -13,17 +13,16 @@
 ;; Install required packages if they don't exit
 ;; From https://github.com/bbatsov/prelude/blob/master/core/prelude-packages.el
 (defvar required-packages
-  (list 'ace-jump-mode 'ack-and-a-half 'auto-complete 'autopair 'coffee-mode
-	'expand-region 'icicles 'jump-char 'magit 'markdown-mode 'multiple-cursors
-	'rainbow-mode 'rainbow-delimiters 'slime 'slime-js 'stylus-mode 'undo-tree
-	'wgrep-ack 'yasnippet 'zencoding-mode)
+  (list 'ace-jump-mode 'ack-and-a-half 'auto-complete 'auto-indent-mode 'autopair
+        'coffee-mode 'expand-region 'icicles 'jump-char 'key-chord 'magit 'markdown-mode
+        'multiple-cursors 'rainbow-mode 'rainbow-delimiters 'slime-js 'stylus-mode
+        'undo-tree 'wgrep-ack 'yasnippet 'zencoding-mode)
   "A list of packages to ensure are installed at launch.")
 
 (while required-packages
   (if (not (package-installed-p (car required-packages)))
       (package-install (car required-packages)))
   (setq required-packages (cdr required-packages)))
-
 
 ;; SLIME
 
@@ -165,6 +164,14 @@
 ;; Autocompletion, dude.
 (require 'auto-complete)
 (global-auto-complete-mode)
+
+;; Key chords -- press two keys at the same time, run a command.
+(require 'key-chord)
+(key-chord-mode 1)
+(key-chord-define-global ",." "<>\C-b")
+(key-chord-define-global "fg" 'jump-char-forward)
+(key-chord-define-global "fd" 'jump-char-backward)
+(key-chord-define-global "xc" 'ace-jump-mode)
 
 
 ;; Fullscreen
